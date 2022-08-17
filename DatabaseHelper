@@ -1,0 +1,39 @@
+package com.example.st10120981sqlliteice3and4;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class DatabaseHelper extends SQLiteOpenHelper {
+
+    //https://www.bing.com/videos/search?q=how+to+use+sql+lite+with+anorid+studo&qpvt=how+to+use+sql+lite+with+anorid+studo&view=detail&mid=2D173FE7150446C52C0E2D173FE7150446C52C0E&&FORM=VRDGAR&ru=%2Fvideos%2Fsearch%3Fq%3Dhow%2Bto%2Buse%2Bsql%2Blite%2Bwith%2Banorid%2Bstudo%26qpvt%3Dhow%2Bto%2Buse%2Bsql%2Blite%2Bwith%2Banorid%2Bstudo%26FORM%3DVDRE
+    public static final String DATABASE_NAME ="User.db";
+    public static final String TABLE1_NAME ="LOGIN_table";
+    public static final String TABLE2_NAME ="REGISTER_table";
+    public static final String TB1Col1_NAME ="Name";
+    public static final String TB1Col2_NAME ="Pass";
+    public static final String TB2Col1_NAME ="Name";
+    public static final String TB2Col2_NAME ="Pass";
+
+//https://www.youtube.com/watch?v=p8TaTgr4uKM
+    public DatabaseHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME,null,1);
+   SQLiteDatabase db = this.getWritableDatabase();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("create table "+TABLE1_NAME +" (Name TEXT PRIMARY KEY,Pass TEXT)");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
+        db.execSQL("DROP TABLE IF EXISTS"+TABLE1_NAME);
+
+        onCreate(db);
+    }
+}
